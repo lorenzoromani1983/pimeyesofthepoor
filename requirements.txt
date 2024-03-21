@@ -1,0 +1,6 @@
+opencv-python
+face_recognition
+scikit-learn
+numpy
+pandas
+tabulate
