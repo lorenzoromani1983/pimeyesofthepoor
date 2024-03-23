@@ -9,15 +9,10 @@ import pandas as pd
 from tabulate import tabulate
 
 path = os.path.dirname(os.path.abspath(__file__))
-
 input_faces = [path for path in os.listdir(path+"/TARGET_FACE")]
-
 dataset_path = path+"/dataset.txt"
-
 faces_dicts = [ast.literal_eval(line.rstrip('\n')) for line in open(dataset_path).readlines()]
-
 mean_values = list()
-
 target_face_dir = path+"/TARGET_FACE"
 
 for (i, face) in enumerate(input_faces):
@@ -50,7 +45,7 @@ for row in faces_dicts:
     target_face_embedding = np.array(row['embedding'])
     euclidean_distance = pairwise_distances([input_face_embedding], [target_face_embedding], metric='euclidean')
     euclidean_distance_reverse = 1.0 - round(euclidean_distance[0][0], 2)
-    if euclidean_distance_reverse >= 0.45:
+    if euclidean_distance_reverse >= 0.45: #print only the faces above this similarity score
         datadict["file"].append(image_path)
         datadict["score"].append(euclidean_distance_reverse)
    
